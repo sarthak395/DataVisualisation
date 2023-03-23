@@ -3,28 +3,107 @@
 
 <head>
 	<title>Yearwise Bar Graph</title>
-	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 
 <body>
 	<h1>Yearwise Bar Graph</h1>
-	<input type="radio" id="2011" name="year" value="2011" checked>
-	<label for="html">2011</label>
-	<input type="radio" id="2012" name="year" value="2012">
-	<label for="css">2012</label>
-	<input type="radio" id="2013" name="year" value="2013">
-	<label for="javascript">2013</label><br>
+	<div class="dropdown">
+		<select id="Yearwise">
+			<option value="X2011">2011</option>
+			<option value="X2012">2012</option>
+			<option value="X2013">2013</option>
+		</select>
+	</div>
+
+	<svg id="bar-js" height="700" width="1000"></svg>
 
 	<script>
-		console.log("Hi script running")
-		let dataset = [{}]
-		d3.csv("/data/yearwise.csv", function (data) {
+		let dataset = [];
+		var svgWidth = 1000, svgHeight = 700, barPadding = 0.5;
+
+		var svg = d3.select('svg')
+
+		d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab1/data/yearwise.csv", function (data) {
+
 			for (var i = 0; i < data.length; i++) {
-				dataset.push({...data[i]});
+				dataset.push(data[i])
 			}
-			console.log(dataset);
+
+			
+			xScale.domain(dataset.map((d) => {
+				return d['Name'];
+			}));
+			yScale.domain([0, 90])
+
+			g.append("g")
+				.attr("transform", "translate(0," + svgHeight + ")")
+				.call(d3.axisBottom(xScale).tickFormat(function (d, i) {
+					return dataset[i]['Name'];
+				}))
+			g.append("g")
+				.call(d3.axisLeft(yScale))
+
+			draw('X2011')
 		});
-		
+		svgHeight = svgHeight - 200;
+		svgWidth = svgWidth - 200;
+
+		var xScale = d3.scaleBand().range([0, svgWidth]).padding(barPadding),
+			yScale = d3.scaleLinear().range([svgHeight, 0]);
+
+		var g = svg.append("g")
+			.attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+		g.append("text").attr("id", "bottom").text("Name for 2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 600 + ")")
+		g.append("text").attr("id", "top").text("2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 0 + ")")
+		g.append("text").text("Value").attr("transform", "translate(" + -50 + "," + svgHeight / 2 + ") rotate(270)")
+		g.append("text").attr("id", "hover").style("visibility", "hidden")
+
+		function draw(value) {
+			const barChart = g.selectAll("rect")
+				.data(dataset.map((d) => { return d[value] }))
+
+			barChart.enter()
+				.append("rect").merge(barChart)
+				.attr("class", "bar")
+				.transition()
+				.duration(800)
+				.attr("x", function (d, i) {
+					return xScale(dataset[i]['Name']);
+				})
+				.attr("y", function (d) {
+					return yScale(d)
+				})
+				.attr("width", xScale.bandwidth())
+				.style('fill', "red")
+				.attr("height", function (d) {
+					return svgHeight - yScale(d)
+				})
+
+			g.selectAll("rect").on("mouseover", function (d, i) {
+				let height_text = yScale(d) - 10
+				d3.select(this).style("opacity", "0.9")
+				d3.select("#hover").text(d + " : " + dataset[i]['Name']).attr("transform", "translate(" + xScale(dataset[i]['Name']) + "," + height_text + ")");
+				d3.select("#hover").style("visibility", "visible");
+			})
+				.on("mouseout", function () {
+					d3.select("#hover").style("visibility", "hidden");
+					d3.select(this).style("opacity", "1")
+				})
+
+		}
+
+		document.addEventListener('input', function (event) {
+			var value = event.target.value;
+
+			console.log(value)
+			draw(value)
+			d3.select("#bottom").text("Name for " + value.substring(1) + " data")
+			d3.select("#top").text(value.substring(1) + " data")
+
+		}, false);
+
 	</script>
 </body>
 

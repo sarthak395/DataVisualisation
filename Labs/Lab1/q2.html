@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yearwise scatterChart</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <h1>Yearwise scatterChart</h1>
+    <div class="dropdown">
+        <select id="Yearwise">
+            <option value="X2011">2011</option>
+            <option value="X2012">2012</option>
+            <option value="X2013">2013</option>
+        </select>
+    </div>
+
+    <svg id="bar-js" height="700" width="1000"></svg>
+
+    <script>
+        let dataset = [];
+        var svgWidth = 1000, svgHeight = 700, barPadding = 0.5;
+
+        var svg = d3.select('svg')
+
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab1/data/yearwise.csv", function (data) {
+
+            for (var i = 0; i < data.length; i++) {
+                dataset.push(data[i])
+            }
+
+            draw('X2011')
+
+        });
+        svgHeight = svgHeight - 200;
+        svgWidth = svgWidth - 200;
+
+        var xScale = d3.scaleLinear().domain([0, 100]).range([0, svgWidth]);
+        yScale = d3.scaleLinear().domain([0, 100]).range([svgHeight, 0]);
+
+        var g = svg.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        g.append("g").call(d3.axisBottom(xScale)).attr("transform", "translate(0," + svgHeight + ")");
+        g.append("g").call(d3.axisLeft(yScale));
+
+        g.append("text").attr("id", "text").text("X 2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 550 + ")")
+        g.append("text").attr("id", "text2").text("2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 0 + ")")
+        g.append("text").attr("id", "text3").text("Y 2011 data").attr("transform", "translate(" + -50 + "," + svgHeight / 2 + ") rotate(270)")
+        g.append("text").attr("id", "hover").style("visibility", "hidden")
+
+        function draw(value) { // values are X2011, X2012, X2013
+            var year = value.substring(1);
+
+            const scatterChart = g.selectAll("circle")
+                .data(dataset.map((d) => { return d[value] }))
+
+            scatterChart.enter()
+                .append("circle").merge(scatterChart)
+                .attr("class", "bar")
+                .transition()
+                .duration(800)
+                .attr("cx", function (d, i) {
+                    return xScale(dataset[i][value]);
+                })
+                .attr("cy", function (d,i) {
+                    return yScale(dataset[i]["Y" + year]);
+                })
+                .attr("r", function (d, i) {
+                    return dataset[i]["R" + year]
+                })
+                .style('fill', "green")
+                
+
+            g.selectAll("circle").on("mouseover", function (d, i) {
+                var x=parseInt(d3.select(this).attr("cx"))+10 ;
+                d3.select(this).style("fill", "red")
+                d3.select("#hover").text("Center- ("+ dataset[i][value] + ","+ dataset[i]["Y"+year]+" "+ ") Radius:"+ dataset[i]["R"+year]).attr("transform", "translate(" +x + "," + d3.select(this).attr("cy") + ")");
+                return d3.select("#hover").style("visibility", "visible");
+            })
+                .on("mouseout", function () {
+                    d3.select("#hover").style("visibility", "hidden");
+                    d3.select(this).style("fill", "green")
+                })
+
+        }
+
+        document.addEventListener('input', function (event) {
+            var value = event.target.value;
+            var year = value.substring(1);
+
+            // console.log(value)
+            draw(value)
+            d3.select("#text").text("X "+year+" data")
+            d3.select("#text3").text("Y "+year+" data")
+            d3.select("#text2").text(year+" data")
+
+        }, false);
+
+    </script>
+</body>
+
+</html>

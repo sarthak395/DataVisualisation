@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unemployment Line Chart</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <h1>Unemployment Line Chart</h1>
+
+    <svg id="bar-js" height="700" width="1000"></svg>
+
+    <script>
+        let dataset = [];
+        var count=0;
+        var parseTime = d3.timeParse("%b %Y");
+        var svgWidth = 1000, svgHeight = 700, barPadding = 0.5;
+
+        var svg = d3.select('svg')
+
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab1/data/unemployment.csv", function (data) {
+
+            for (var i = 0; i < data.length; i++) {
+                dataset.push(data[i])
+            }
+
+            xScale.domain(d3.extent(dataset.map((d) => { return parseTime(d['date']) })));
+
+            g.append("g").call(d3.axisBottom(xScale).ticks(d3.timeYear)).attr("transform", "translate(0," + svgHeight + ")");
+            g.append("g").call(d3.axisLeft(yScale));
+
+            interval = setInterval(draw, 800);
+
+        });
+        svgHeight = svgHeight - 200;
+        svgWidth = svgWidth - 200;
+
+        var xScale = d3.scaleTime().range([0, svgWidth]),
+            yScale = d3.scaleLinear().domain([0, 15]).range([svgHeight, 0]);
+
+        var g = svg.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+        g.append("text").text("Unemployment Rate%").attr("transform", "translate(" + -25 + "," + svgHeight / 1.5 + ") rotate(270)")
+
+
+        function draw() { 
+            g.selectAll("#line").remove()
+
+            g.append("path").datum(dataset)
+                .attr("id", "line")
+                .attr("fill", "none")
+                .attr("stroke", "blue")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(function (d) { return xScale(parseTime(d['date'])) })
+                    .y(function (d) { return yScale(d['rate'] * (count / 15)) }))
+            
+            count++;
+            if (count > 15) {
+                clearInterval(interval);
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
