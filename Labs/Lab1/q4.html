@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Final Question</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <svg id="race" height="700" width="1000"></svg>
+    <svg id="nonwhite" height="700" width="1000"></svg>
+    <script>
+
+        var svgWidth = 1000, svgHeight = 700, barPadding = 0.5;
+        var svg_part1 = d3.select("#race"), svg_part2 = d3.select("#nonwhite")
+
+        let dataset = [];
+
+        // let all_races = [];
+        // let count_of_races = [];
+
+        let award2 = []  
+        let award_count = [];
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab1/data/oscar_demographics.csv", function (data) {
+            let race_count = {};
+
+            for (let i = 0; i < data.length; i++) {
+                dataset.push(data[i])
+                // console.log(data[i]['award'] , typeof(award2))
+                if (!award2.includes(data[i]["award"])) {
+                    award2.push(data[i]["award"]);
+                }
+                
+                if (data[i]['race_ethnicity'] in race_count)
+                    race_count[data[i]["race_ethnicity"]]++
+                else
+                    race_count[data[i]["race_ethnicity"]] = 1
+
+            }
+
+            all_races = Object.keys(race_count);
+            count_of_races = Object.values(race_count)
+
+
+            for (let i = 0; i < award2.length; i++) {
+                let obj = {
+                    "award": award2[i],
+                }
+                for (let j = 0; j < all_races.length; j++) {
+                    if(all_races[j]==="White"){
+                        continue;
+                    }
+                    obj[all_races[j]] = 0;
+                }
+                award_count.push(obj);
+            }
+
+            for (let i = 0; i < dataset.length; i++) {
+                var award = dataset[i]['award']
+                
+                for (let j = 0; j < award_count.length; j++) {
+                    if (award_count[j]["award"] === award) {
+                        
+                        if(dataset[i]['race_ethnicity']!="White")
+                            award_count[j][dataset[i]['race_ethnicity']]++
+                    }
+                    
+                }
+            }
+            
+            // converting into percentages
+            for (let i = 0; i < award_count.length; i++) {
+                let sum = 0;
+                for (let j = 0; j < all_races.length; j++) {
+                    if(all_races[j]!="White")
+                        sum += award_count[i][all_races[j]];
+                }
+                
+                for (let j = 0; j < all_races.length; j++) {
+                    if(all_races[j]!="White")
+                        award_count[i][all_races[j]] = (award_count[i][all_races[j]] / sum) * 100;
+                }
+            }
+            
+            part1();
+            part2();
+
+        })
+
+        svgHeight = svgHeight - 200;
+        svgWidth = svgWidth - 200;
+
+        var xScale_part1 = d3.scaleBand().range([0, svgWidth]).padding(0.5),
+            yScale_part1 = d3.scaleLinear().range([svgHeight, 0]).nice();
+
+        var xScale_part2 = d3.scaleBand().range([0, svgWidth]).padding(0.5),
+            yScale_part2 = d3.scaleLinear().range([svgHeight, 0]);
+
+        var g_part1 = svg_part1.append("g").attr("transform", "translate(" + 100 + "," + 100 + ")")
+        var g_part2 = svg_part2.append("g").attr("transform", "translate(" + 100 + "," + 100 + ")")
+
+        function part1() {
+
+            xScale_part1.domain(all_races);
+            yScale_part1.domain([0, 450]);
+
+            g_part1.append("g").call(d3.axisBottom(xScale_part1).tickFormat(function (d, i) {
+                return all_races[i];
+            })).attr("transform", "translate(0," + svgHeight + ")")
+
+            g_part1.append("g").call(d3.axisLeft(yScale_part1))
+
+            g_part1.append("text").attr("id", "bottom").text("Ethinicities").attr("transform", "translate(" + svgWidth / 2 + "," + 550 + ")")
+            g_part1.append("text").attr("id", "top").text("Number of awards").attr("transform", "translate(" + svgWidth / 2 + "," + 0 + ")")
+            g_part1.append("text").text("Value").attr("transform", "translate(" + -50 + "," + svgHeight / 2 + ") rotate(270)")
+            g_part1.append("text").attr("id", "hover").style("visibility", "hidden")
+
+
+            const barChart = g_part1.selectAll("rect")
+                .data(count_of_races)
+
+            barChart.enter()
+                .append("rect").merge(barChart)
+                .attr("class", "bar")
+                .transition()
+                .duration(800)
+                .attr("x", function (d, i) {
+                    return xScale_part1(all_races[i]);
+                })
+                .attr("y", function (d, i) {
+                    return yScale_part1(count_of_races[i])
+                })
+                .attr("width", xScale_part1.bandwidth())
+                .style('fill', "red")
+                .attr("height", function (d) {
+                    return svgHeight - yScale_part1(d)
+                })
+
+            g_part1.selectAll("rect").on("mouseover", function (d, i) {
+                let height_text = yScale_part1(d) - 10
+                d3.select(this).style("opacity", "0.9")
+                d3.select("#hover").text(d).attr("transform", "translate(" + xScale_part1(all_races[i]) + "," + height_text + ")");
+                d3.select("#hover").style("visibility", "visible");
+            })
+                .on("mouseout", function () {
+                    d3.select("#hover").style("visibility", "hidden");
+                    d3.select(this).style("opacity", "1")
+                })
+        }
+
+
+        function part2() {
+            // console.log("Award2 ",award2)
+            // console.log(all_races)
+            // console.log(award_count)
+
+            xScale_part2.domain(award2);
+            yScale_part2.domain([0, 100]);
+
+            g_part2.append("g").call(d3.axisBottom(xScale_part2).tickFormat(function (d, i) {
+                return award2[i];
+            })).attr("transform", "translate(0," + svgHeight + ")");
+
+            g_part2.append("g").call(d3.axisLeft(yScale_part2).tickValues([0, 25, 50, 75, 100]).tickFormat(function (d) {
+                return d + "%";
+            }))
+
+
+            // remove 'White' from 'all races' array
+            var all_races_2 = all_races.slice(1, all_races.length + 1)
+
+            var colour = d3.scaleOrdinal()
+                .domain(all_races_2)
+                .range(['#e41a1c', '#377eb8', '#4daf4a', "orange", "yellow"])
+
+            var stackedData = d3.stack().keys(all_races_2)(award_count);
+
+            g_part2.append("g")
+                .selectAll("g")
+                .data(stackedData)
+                .enter().append("g")
+                .attr("fill", function (d) { return colour(d.key) })
+                .selectAll("rect")
+                .data(function (d) { return d })
+                .enter().append("rect")
+                .attr("x", function (d) { return xScale_part2(d.data.award); })
+                .attr("y", function (d) { return yScale_part2(d[1]); })
+                .attr("height", function (d) { return yScale_part2(d[0]) - yScale_part2(d[1]); })
+                .attr("width", xScale_part2.bandwidth())
+
+            for (let i = 0; i < all_races_2.length; i++) {
+                g_part2.append("rect")
+                    .style("fill", colour(all_races_2[i]))
+                    .attr("width", "20")
+                    .attr("height", "20")
+                    .attr("y", 550)
+                    .attr("x", 120 * i+100)
+
+                g_part2.append("text")
+                    .text(all_races_2[i])
+                    .attr("transform", "translate(" + (120 * i + 125) + "," + 565 + ")")
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
