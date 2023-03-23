@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Yearwise Bar Graph</title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+	<h1>Yearwise Bar Graph</h1>
+	<input type="radio" id="2011" name="year" value="2011" checked>
+	<label for="html">2011</label>
+	<input type="radio" id="2012" name="year" value="2012">
+	<label for="css">2012</label>
+	<input type="radio" id="2013" name="year" value="2013">
+	<label for="javascript">2013</label><br>
+
+	<script>
+		console.log("Hi script running")
+		let dataset = [{}]
+		d3.csv("/data/yearwise.csv", function (data) {
+			for (var i = 0; i < data.length; i++) {
+				dataset.push({...data[i]});
+			}
+			console.log(dataset);
+		});
+		
+	</script>
+</body>
+
+</html>
