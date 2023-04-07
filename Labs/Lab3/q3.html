@@ -11,10 +11,15 @@
             font-family: "Helvetica Neue", sans-serif;
         }
 
+        .eventname {
+            font-size: 5px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
         .calendar .month {
             margin: 0px 20px;
             display: inline-block;
-            width: calc(50% - 40px);
+            width: calc(30% - 40px);
         }
 
         .calendar .month-name {
@@ -28,7 +33,7 @@
             stroke: #eee;
         }
 
-        .calendar text {
+        .num {
             text-anchor: middle;
             font-size: 14px;
         }
@@ -137,14 +142,17 @@
             .data(d => d.days)
             .enter().append("g")
             .attr("class", "day")
-            .attr("id",function(d) { return d.date.getFullYear() +  "-" + (d.date.getMonth() +1)+ "-" + d.date.getDate() ; })
+            
 
-        const dayRects = days.append("rect");
+        const dayRects = days.append("rect").attr("id", function (d) { return "date"+d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate(); });
 
+        
         const dayNums = days.append("text")
-            .attr("class", "num")
-            .text(d => d.date.getDate())
-            .attr("dy", 4.5);
+        .attr("class", "num")
+        .text(d => d.date.getDate())
+        .attr("dy", 4.5);
+        
+        const dayevent = days.append("text").attr("id", function (d) { return "event"+d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate(); }).attr("class","eventname")
 
         const dayOfWeek = g.selectAll(".day-of-week")
             .data(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"])
@@ -261,32 +269,45 @@
 
         // now we can add the events
         // take a look at the data.csv file to see how the events are structured
-        d3.csv("yearly.csv", function(error,data) {
-            if (error) throw error;
+        let dataset = []
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab3/yearly.csv", function (data) {
+            dataset.push({
+                "Activity": data.Activity,
+                "Start": data.Start,
+                "Duration": data.Duration,
+                "Type": data.Type
+            })
+           addevents()
+        }); 
 
-            // we need to parse the date
-            for(let i=0;i<data.length;i++){
-                console.log(data[i])
-            }
-            // we need to nest the data by month
-            // var nested = d3.nest()
-            //     .key(function(d) {
-            //         return d.date.getMonth();
-            //     })
-            //     .entries(data);
+        
+        function addevents(){
+            different_types = new Set();
+        for(let i=0;i<dataset.length;i++)
+        {
+            different_types.add(dataset[i].Type);
+        }
+        different_types = Array.from(different_types);
 
-            // we need to add the events to the right day
-            // nested.forEach(function(d) {
-            //     d.values.forEach(function(e) {
-            //         var day = d3.select("#" + e.date.getFullYear() + "-" + (e.date.getMonth() + 1) + "-" + e.date.getDate());
-            //         day.append("circle")
-            //             .attr("r", 3)
-            //             .attr("cx", 15)
-            //             .attr("cy", 15)
-            //             .attr("fill", "red");
-            //     });
-            // });
+        var color = d3.scaleOrdinal()
+            .domain(different_types)
+            .range(d3.schemeSet2);
+        
+        let type_by_color = {};
+        // now iterate through dataset and colour those rects whose id is start_date
+        dataset.forEach(function (d) {
+            // convert d.Start to date
+            d.Start = new Date(d.Start);
+            
+            
+            var day = d3.select("#date" + d.Start.getFullYear() + "-" + (d.Start.getMonth() + 1) + "-" + d.Start.getDate());
+            day.style("fill", color(d.Type));
+            
+            type_by_color[color(d.Type)] = d.Type;
+            console.log(type_by_color);
         });
+
+        }
 
     </script>
 

@@ -27,4 +27,4 @@ Activity,Type,Start,Duration,Batches
 "Project Report Submission","Academic Events (Project)",2023-05-18,1,"ug3,ug4,ug5"
 "Project Grade Due","Academic Events (Project)",2023-05-23,1,"ug3,ug4,ug5"
 "Decralation of Results","Academic Events (Results)",2023-05-26,1,"ug2,ug3,ug4"
-"Course Grades Due","Academic Events (Results)",2023-05-13 , "ug2,ug3,ug4"
+"Course Grades Due","Academic Events (Results)",2023-05-13 ,1, "ug2,ug3,ug4"
