@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yearwise Bar Graph</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var root = {
+            "name": "Days",
+            "color": "#DADFE1",
+            "children": [
+                {
+                    "name": "Monday",
+                    "color": "#DADFE1",
+                    "children": [
+                        {
+                            "name": "8 - 11",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "8-9:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "9:30-11",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "11 - 2",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "11-12:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "Class",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "CSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "ECE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "ECE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "HSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "HSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "Tut",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "CSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "ECE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "ECE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "HSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "HSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "Lab",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "CSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "CSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "ECE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "ECE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "ECE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "HSE",
+                                                            "color": "#DADFE1",
+                                                            "children": [
+                                                                {
+                                                                    "name": "HSE 1001",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1002",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                },
+                                                                {
+                                                                    "name": "HSE 1003",
+                                                                    "color": "#DADFE1",
+                                                                    "size": 100
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "12:30-2",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "2 - 5",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "2-3:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "3:30-5",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    "name": "Tuesday",
+                    "color": "#DADFE1",
+                    "children": [
+                        {
+                            "name": "8 - 11",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "8-9:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "9:30-11",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "11 - 2",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "11-12:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "12:30-2",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "2 - 5",
+                            "color": "#DADFE1",
+                            "children": [
+                                {
+                                    "name": "2-3:30",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "3:30-5",
+                                    "color": "#DADFE1",
+                                    "children": [
+                                        {
+                                            "name": "Class",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Tut",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Lab",
+                                            "color": "#DADFE1",
+                                            "children": [
+                                                {
+                                                    "name": "CSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "CSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "CSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "ECE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "ECE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "ECE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "HSE",
+                                                    "color": "#DADFE1",
+                                                    "children": [
+                                                        {
+                                                            "name": "HSE 1001",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1002",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        },
+                                                        {
+                                                            "name": "HSE 1003",
+                                                            "color": "#DADFE1",
+                                                            "size": 100
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                    ]
+                }
+            ]
+        }
+
+        // ADD TOOLTIP
+        var tooltip = d3.select('body') // select element in the DOM with id 'chart'
+            .append('div').classed('tooltip', true); // append a div element to the element we've selected    
+        tooltip.append('div') // add divs to the tooltip defined above 
+            .attr('class', 'label')
+
+
+        var width = 525,
+            height = 525,
+            radius = (Math.min(width, height) / 2) - 10; // lowest number divided by 2. Then subtract 10
+
+        var x = d3.scaleLinear() // continuous scale. preserves proportional differences
+            .range([0, 2 * Math.PI]); // setting range from 0 to 2 * circumference of a circle
+
+        var y = d3.scaleSqrt() // continuous power scale 
+            .range([0, radius]); // setting range from 0 to radius
+
+        var partition = d3.partition(); // subdivides layers
+
+        var arc = d3.arc() // creates arcs
+            .startAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x0))); }) // start angle of arc
+            .endAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x1))); }) // end angle of arc
+            .innerRadius(function (d) { return Math.max(0, y(d.y0)); }) // inner radius of arc
+            .outerRadius(function (d) { return Math.max(0, y(d.y1)); }); // outer radius of arc
+
+        var svg = d3.select("body").append("svg") // appending svg to body
+            .attr("width", width) // setting width of svg
+            .attr("height", height) // setting height of svg
+            .append("g") // appending group to svg
+            .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")"); // setting transform of group
+
+        var root = d3.hierarchy(root);
+
+        var total = 0;
+
+        root.sum(function (d) {
+            if (d.size) {
+                total += d.size
+            }
+            return d.size;
+        });
+
+        root.data.children.forEach(function (d) { d.enabled = true; })
+
+        // create a color scale
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+        // assign different color to each category
+        root.data.children.forEach(function (d) {
+            d.color = color(d.name);
+        });
+
+        var path = svg.selectAll("path")
+            .data(partition(root).descendants()) // setting data to descendants of root
+            .enter().append("path") // appending path to svg
+            .attr("d", arc) // setting d attribute of path to arc
+            .style("fill", function (d) { return d.data.color; }) // setting fill of path
+            .on("click", click) // setting click event
+            .on('mouseover', function (d) { // setting mouseover event
+                tooltip.select('.label').html(d.data.name); // setting label of tooltip
+                tooltip.style('display', 'block'); // setting display of tooltip
+                tooltip.style('opacity', 2); // setting opacity of tooltip
+            })
+
+        d3.select(self.frameElement).style("height", height + "px");
+
+        function click(d) {
+            console.log("function click");
+            console.log("d.y0 = " + d.y0);
+
+            svg.transition()
+                .duration(750) // duration of transition
+                .tween("scale", function () {
+                    var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+                        yd = d3.interpolate(y.domain(), [d.y0, 1]),
+                        yr = d3.interpolate(y.range(), [d.y0 ? (80) : 0, radius]);
+                    return function (t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+                })
+                .selectAll("path")
+                .attrTween("d", function (d) { return function () { return arc(d); }; });
+            d3.select(".total").text(d.value);
+        }
+
+    </script>
+</body>

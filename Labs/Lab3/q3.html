@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .calendar {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        .calendar .month {
+            margin: 0px 20px;
+            display: inline-block;
+            width: calc(50% - 40px);
+        }
+
+        .calendar .month-name {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .calendar rect {
+            fill: none;
+            stroke: #eee;
+        }
+
+        .calendar text {
+            text-anchor: middle;
+            font-size: 14px;
+        }
+
+        .calendar .day.past text {
+            fill: #aaa;
+        }
+
+        .calendar .day.today rect {
+            fill: #222;
+        }
+
+        .calendar .day.today text {
+            fill: #fff;
+        }
+
+        .calendar .outline {
+            fill: none;
+            stroke: #888;
+        }
+
+        @media only screen and (max-width: 574px) {
+            .calendar .month {
+                margin: 0px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar"></div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/arraygeous@0.0.6/build/arraygeous.min.js"></script>
+    <script>
+        const calendar = d3.select(".calendar");
+
+        const day = 86400000;
+
+        let data = [];
+
+        // add month ( from January to May ) as row and date as col in data array
+
+        for (let i = 0; i < 5; i++) {
+            const now = new Date;
+            const month = i;
+            const year = now.getFullYear();
+
+            makeMonth(i, year);
+        }
+
+        console.log(data);
+
+        // Adds days of month to data array
+        function makeMonth(month, year) {
+            const monthDays = [];
+            let loopMonth = month;
+            let loopDay = 0;
+            let loopDate = new Date(year, loopMonth, loopDay);
+            let loopStartDay = loopDate.getDay();
+            while (loopMonth === month) {
+                monthDays.push({ date: loopDate, col: loopDate.getDay(), row: Math.floor((loopDate.getDate() + loopStartDay) / 7) });
+
+                loopDate = new Date(loopDate.getTime() + day);
+                loopMonth = loopDate.getMonth();
+            }
+
+            if (monthDays[0].date.getDate() > 1) {
+                monthDays.shift();
+            }
+            if (monthDays[0].row > 0) {
+                monthDays.forEach(d => {
+                    --d.row;
+                    return d;
+                });
+            }
+
+            data.push({ month, days: monthDays });
+        }
+
+        // create a svg for each month
+        const months = calendar.selectAll(".month")
+            .data(data)
+            .enter().append("div")
+            .attr("class", d => "month month-" + d.month);
+
+        // Writing months name on top 
+        months.append("div")
+            .attr("class", "month-name")
+            .style("margin", "20px")
+            .text(d => getMonthName(d.month));
+
+        // creating a svg for each month
+        const svg = months.append("svg");
+        const g = svg.append("g");
+
+        // 7 columns
+        const columns = d3.scaleBand()
+            .domain(d3.range(0, 7));
+
+        // 5 rows
+        const rows = d3.scaleBand()
+            .domain(d3.range(0, 5));
+
+        const days = g.selectAll(".day")
+            .data(d => d.days)
+            .enter().append("g")
+            .attr("class", "day")
+            .attr("id",function(d) { return d.date.getFullYear() +  "-" + (d.date.getMonth() +1)+ "-" + d.date.getDate() ; })
+
+        const dayRects = days.append("rect");
+
+        const dayNums = days.append("text")
+            .attr("class", "num")
+            .text(d => d.date.getDate())
+            .attr("dy", 4.5);
+
+        const dayOfWeek = g.selectAll(".day-of-week")
+            .data(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"])
+            .enter().append("text")
+            .attr("class", "day-of-week")
+            .attr("dy", -4)
+            .text(d => d);
+
+        const outlines = g.append("polygon")
+            .datum(d => data.filter(f => f.month === d.month)[0].days)
+            .attr("class", "outline");
+
+        redraw();
+        addEventListener("resize", redraw);
+
+        function redraw() {
+            const margin = { left: 1, right: 1, top: 16, bottom: 1 };
+
+            const box = d3.select(".month").node().getBoundingClientRect();
+            const baseWidth = innerWidth <= 640 ? Math.min(innerWidth, box.width) : box.width;
+            const width = baseWidth - margin.left - margin.right;
+            const baseHeight = Math.max((baseWidth / 2), 250);
+            const height = baseHeight - margin.top - margin.bottom; // TODO: Figure this out w/r/t aspect ratio
+
+            svg
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+            g
+                .attr("transform", "translate(" + [margin.left, margin.top] + ")");
+
+            columns
+                .range([0, width]);
+
+            rows
+                .range([0, height]);
+
+            data.forEach(datum => {
+
+                datum.days.forEach(d => {
+                    d.x0 = columns(d.col);
+                    d.x1 = d.x0 + columns.bandwidth();
+                    d.y0 = rows(d.row);
+                    d.y1 = d.y0 + rows.bandwidth();
+                    d.v0 = [d.x0, d.y0];
+
+                    return d;
+                });
+
+                return datum;
+            });
+
+            dayOfWeek
+                .attr("x", (d, i) => columns(i) + columns.bandwidth() / 2);
+
+            days
+                .attr("transform", d => `translate(${d.v0})`);
+
+            dayRects
+                .attr("width", columns.bandwidth())
+                .attr("height", rows.bandwidth());
+
+            dayNums
+                .attr("x", columns.bandwidth() / 2)
+                .attr("y", rows.bandwidth() / 2);
+
+            outlines
+                .attr("points", calcHull);
+        }
+
+        function getMonthName(n) {
+            return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][n];
+        }
+
+        function calcHull(days) {
+            const x0min = arr.min(days, d => d.x0),
+                x1max = arr.max(days, d => d.x1),
+                y0min = arr.min(days, d => d.y0),
+                y1max = arr.max(days, d => d.y1);
+
+            // Width of top row
+            const r0 = days.filter(f => f.row === 0),
+                r0x0min = arr.min(r0, d => d.x0),
+                r0x1max = arr.max(r0, d => d.x1);
+
+            // Width of bottom row
+            const r4 = days.filter(f => f.row === 4),
+                r4x1max = arr.max(r4, d => d.x1),
+                r4x0min = arr.min(r4, d => d.x0);
+
+            // The top
+            let points = [[r0x0min, y0min], [r0x1max, y0min]];
+
+            // The bottom right
+            if (r4x1max < x1max) {
+                const r3y1 = days.filter(f => f.row === 3)[0].y1;
+                points.push([x1max, r3y1]);
+                points.push([r4x1max, r3y1]);
+            }
+            points.push([r4x1max, y1max]);
+
+            // The bottom left
+            points.push([r4x0min, y1max]);
+
+            // The top left
+            if (r0x0min > x0min) {
+                const r1y0 = days.filter(f => f.row === 1)[0].y0;
+                points.push([x0min, r1y0]);
+                points.push([r0x0min, r1y0]);
+            }
+
+            return points;
+        }
+
+        // now we can add the events
+        // take a look at the data.csv file to see how the events are structured
+        d3.csv("yearly.csv", function(error,data) {
+            if (error) throw error;
+
+            // we need to parse the date
+            for(let i=0;i<data.length;i++){
+                console.log(data[i])
+            }
+            // we need to nest the data by month
+            // var nested = d3.nest()
+            //     .key(function(d) {
+            //         return d.date.getMonth();
+            //     })
+            //     .entries(data);
+
+            // we need to add the events to the right day
+            // nested.forEach(function(d) {
+            //     d.values.forEach(function(e) {
+            //         var day = d3.select("#" + e.date.getFullYear() + "-" + (e.date.getMonth() + 1) + "-" + e.date.getDate());
+            //         day.append("circle")
+            //             .attr("r", 3)
+            //             .attr("cx", 15)
+            //             .attr("cy", 15)
+            //             .attr("fill", "red");
+            //     });
+            // });
+        });
+
+    </script>
+
+</body>
+
+</html>

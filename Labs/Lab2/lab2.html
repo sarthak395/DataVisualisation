@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yearwise Bar Graph</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <h1>Yearwise Bar Graph</h1>
+    <div class="dropdown">
+        <select id="Yearwise">
+            <option value="X2011">2011</option>
+            <option value="X2012">2012</option>
+            <option value="X2013">2013</option>
+        </select>
+    </div>
+
+    <div class="bar">
+    </div>
+    
+    <div class="scatter">
+    </div>
+    
+
+    <script>
+        let dataset = [];
+        var svgWidth = 1000, svgHeight = 700, barPadding = 0.5;
+
+        var svg_bar = d3.select(".bar")
+            .append("svg")
+            .attr("width", 1000)
+            .attr("height", 700);
+
+        var svg_chart = d3.select(".scatter")
+            .append("svg")
+            .attr("width", 1000)
+            .attr("height", 700);
+
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab1/data/yearwise.csv", function (data) {
+
+            for (var i = 0; i < data.length; i++) {
+                dataset.push(data[i])
+            }
+
+            // BARCHART
+            xScale_bar.domain(dataset.map((d) => {
+                return d['Name'];
+            }));
+            yScale_bar.domain([0, 90])
+
+            g_bar.append("g")
+                .attr("transform", "translate(0," + svgHeight + ")")
+                .call(d3.axisBottom(xScale_bar).tickFormat(function (d, i) {
+                    return dataset[i]['Name'];
+                }))
+            g_bar.append("g")
+                .call(d3.axisLeft(yScale_bar))
+
+            // SCATTER CHART
+            xScale_chart.domain([0, 100]).range([0, svgWidth]);
+            yScale_chart.domain([0, 100]).range([svgHeight, 0]);
+
+            g_chart.append("g").call(d3.axisBottom(xScale_chart)).attr("transform", "translate(0," + svgHeight + ")");
+            g_chart.append("g").call(d3.axisLeft(yScale_chart));
+
+            draw('X2011')
+        });
+        svgHeight = svgHeight - 200;
+        svgWidth = svgWidth - 200;
+
+        // FOR BARCHART
+        var xScale_bar = d3.scaleBand().range([0, svgWidth]).padding(barPadding),
+            yScale_bar = d3.scaleLinear().range([svgHeight, 0]);
+
+        // FOR SCATTER CHART
+        var xScale_chart = d3.scaleLinear().domain([0, 100]).range([0, svgWidth]);
+        yScale_chart = d3.scaleLinear().domain([0, 100]).range([svgHeight, 0]);
+
+        // FOR BARCHART
+        var g_bar = svg_bar.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        g_bar.append("text").attr("id", "bottom").text("Name for 2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 600 + ")")
+        g_bar.append("text").attr("id", "top").text("2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 0 + ")")
+        g_bar.append("text").text("Value").attr("transform", "translate(" + -50 + "," + svgHeight / 2 + ") rotate(270)")
+        g_bar.append("text").attr("id", "hover").style("visibility", "hidden")
+
+        // FOR SCATTERCHART
+        var g_chart = svg_chart.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        g_chart.append("text").attr("id", "text").text("X 2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 550 + ")")
+        g_chart.append("text").attr("id", "text2").text("2011 data").attr("transform", "translate(" + svgWidth / 2 + "," + 0 + ")")
+        g_chart.append("text").attr("id", "text3").text("Y 2011 data").attr("transform", "translate(" + -50 + "," + svgHeight / 2 + ") rotate(270)")
+        g_chart.append("text").attr("id", "hover2").style("visibility", "hidden")
+
+        // TOOLTIP FOR BARCHART
+        var Tooltip = d3.select(".bar")
+            .append("div").style("position", "absolute")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("padding", "5px")
+        function draw(value) {
+
+            var year = value.substring(1);
+
+            {/*BAR CHART*/ }
+            const barChart = g_bar.selectAll("rect")
+                .data(dataset.map((d) => { return d[value] }))
+
+            barChart.enter()
+                .append("rect").merge(barChart)
+                .attr("class", "bar")
+                .transition()
+                .duration(800).attr("id", function (d, i) {
+                    return "bar" + i;
+                })
+                .attr("x", function (d, i) {
+                    return xScale_bar(dataset[i]['Name']);
+                })
+                .attr("y", function (d) {
+                    return yScale_bar(d)
+                })
+                .attr("width", xScale_bar.bandwidth())
+                .style('fill', "red")
+                .attr("height", function (d) {
+                    return svgHeight - yScale_bar(d)
+                })
+
+
+            g_bar.selectAll("rect").on("mouseover", function (d, i) {
+
+                // Interactivity between scatter and bar graph
+                d3.select(this).style("fill", "blue")
+                d3.select("#chart" + i).style("fill", "blue")
+
+                // adding tooltip
+                Tooltip.style("opacity", "1");
+
+
+
+            }).on("mousemove", function (d, i) {
+                // d + " : " + dataset[i]['Name']
+                // placing tooltip
+                Tooltip
+                    .html(d + " : " + dataset[i]['Name'])
+                    .style("left", (d3.mouse(this)[0] + 90) + "px")
+                    .style("top", (d3.mouse(this)[1] + 30) + "px")
+            })
+                .on("mouseout", function (d, i) {
+
+                    // removing interactivity 
+                    d3.select(this).style("fill", "red")
+                    d3.select("#chart" + i).style("fill", "green")
+
+                    // removing tooltip
+                    Tooltip.style("opacity", "0");
+                })
+
+
+            {/*SCATTER CHART*/ }
+            const scatterChart = g_chart.selectAll("circle")
+                .data(dataset.map((d) => { return d[value] }))
+
+            scatterChart.enter()
+                .append("circle").merge(scatterChart)
+                .transition().attr("class", "bar").attr("id", function (d, i) {
+                    return "chart" + i;
+                })
+                .duration(800)
+                .attr("cx", function (d, i) {
+                    return xScale_chart(dataset[i][value]);
+                })
+                .attr("cy", function (d, i) {
+                    return yScale_chart(dataset[i]["Y" + year]);
+                })
+                .attr("r", function (d, i) {
+                    return dataset[i]["R" + year]
+                })
+                .style('fill', "green")
+
+
+            g_chart.selectAll("circle").on("mouseover", function (d, i) {
+
+                // interactivity
+                d3.select(this).style("fill", "blue")
+                d3.select("#bar" + i).style("fill", "blue");
+
+                Tooltip.style("opacity", "1");
+
+            }).on("mousemove", function (d, i) {
+                // d + " : " + dataset[i]['Name']
+                // placing tooltip
+                Tooltip
+                    .html("Center- (" + dataset[i][value] + "," + dataset[i]["Y" + year] + " " + ") Radius:" + dataset[i]["R" + year])
+                    .style("left", (d3.mouse(this)[0] + 90) + "px")
+                    .style("top", (d3.mouse(this)[1] + 800) + "px")
+            })
+                .on("mouseout", function (d, i) {
+                    Tooltip.style("opacity", "0");
+
+                    d3.select(this).style("fill", "green")
+                    d3.select("#bar" + i).style("fill", "red");
+                })
+
+
+        }
+
+        document.addEventListener('input', function (event) {
+            var value = event.target.value;
+
+            console.log(value)
+            draw(value)
+            d3.select("#bottom").text("Name for " + value.substring(1) + " data")
+            d3.select("#top").text(value.substring(1) + " data")
+
+        }, false);
+
+    </script>
+</body>
+
+</html>

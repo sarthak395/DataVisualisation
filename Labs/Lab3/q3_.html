@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .calendar {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        .calendar .month {
+            margin: 0px 20px;
+            display: inline-block;
+            width: calc(50% - 40px);
+        }
+
+        .calendar .month-name {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .calendar rect {
+            fill: none;
+            stroke: #eee;
+        }
+
+        .calendar text {
+            text-anchor: middle;
+            font-size: 14px;
+        }
+
+        .calendar .day.past text {
+            fill: #aaa;
+        }
+
+        .calendar .day.today rect {
+            fill: #222;
+        }
+
+        .calendar .day.today text {
+            fill: #fff;
+        }
+
+        .calendar .outline {
+            fill: none;
+            stroke: #888;
+        }
+
+        @media only screen and (max-width: 574px) {
+            .calendar .month {
+                margin: 0px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar"></div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/arraygeous@0.0.6/build/arraygeous.min.js"></script>
+    <script>
+        const calendar = d3.select(".calendar");
+        let data = []
+
+        //add month ( from January to May ) as row and date as col in data array
+        for (let i = 0; i < 5; i++) {
+            const now = new Date;
+            let loopmonth = i;
+            let loopday = 0;
+            let loopyear = now.getFullYear(); 
+            let loopdate = new Date(loopyear, loopmonth, loopday);
+            let loopmonthdays = new Date(loopyear, loopmonth + 1, 0).getDate();
+            let loopmonthname = getMonthName(loopmonth);
+            let loopmonthdata = [];
+            for (let j = 0; j < loopmonthdays; j++) {
+                loopmonthdata.push(j + 1)
+            }
+            data.push({ month: loopmonthname, dates: loopmonthdata })
+        }
+
+        // console.log(data)
+
+        
+
+        function getMonthName(n) {
+            return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][n];
+        }
+
+    </script>
+</body>
+
+</html>
