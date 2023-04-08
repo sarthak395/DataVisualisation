@@ -297,11 +297,20 @@
         // now iterate through dataset and colour those rects whose id is start_date
         dataset.forEach(function (d) {
             // convert d.Start to date
-            d.Start = new Date(d.Start);
-            
-            
-            var day = d3.select("#date" + d.Start.getFullYear() + "-" + (d.Start.getMonth() + 1) + "-" + d.Start.getDate());
-            day.style("fill", color(d.Type));
+            var start_date = new Date(d.Start);
+            var duration = parseInt(d.Duration);
+            var end_date = new Date(d.Start);
+            end_date.setDate(end_date.getDate() + duration-1);
+            console.log(start_date, end_date)
+
+            // now iterate through all the dates between start and end date
+            while (start_date <= end_date) {
+                var day = d3.select("#date" + start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate());
+                day.style("fill", color(d.Type));
+                start_date.setDate(start_date.getDate() + 1);
+            }
+            // var day = d3.select("#date" + d.Start.getFullYear() + "-" + (d.Start.getMonth() + 1) + "-" + d.Start.getDate());
+            // day.style("fill", color(d.Type));
             
             type_by_color[color(d.Type)] = d.Type;
             console.log(type_by_color);
