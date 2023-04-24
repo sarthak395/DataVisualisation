@@ -6,6 +6,7 @@
     <div id="my_dataviz"></div>
 </body>
 
+<script src="https://d3js.org/d3.v4.js"></script>
 <script>
     var margin = { top: 30, right: 30, bottom: 70, left: 60 },
         width = 460 - margin.left - margin.right,
@@ -19,8 +20,41 @@
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
-    
-    d3.csv()
+
+    var x = d3.scaleLinear()
+    var y = d3.scaleLinear()
+    var dataset = []
+    d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Labs/Lab%20Exam/q1-data.csv', function (data) {
+        dataset = data
+
+        x.range([0, width])
+            .domain([-11, 1])
+            
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "translate(-10,0)rotate(-45)")
+            .style("text-anchor", "end");
+
+        // Add Y axis
+
+        y.domain([0 , 11])
+            .range([height, 0]);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // Bars
+        svg.selectAll("mybar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", function (d) { return x(d.X); })
+            .attr("y", function (d) { return y(Math.log(parseFloat(d.Y))); })
+            .attr("height", function (d) {console.log(Math.log(parseFloat(d.Y)) ,y(Math.log(parseFloat(d.Y)))); return height - y(Math.log(parseFloat(d.Y))); })
+            .attr("fill", "#69b3a2")
+
+    })
 </script>
 
 </html>
