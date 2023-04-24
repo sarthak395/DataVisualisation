@@ -1,0 +1,159 @@
+Year,Name,Rating (M),Host
+1991,The Tonight Show,6.5,Jay Leno
+1991,Late Night,3.2,David Letterman
+1991,Later,1.6,Carson Daily
+1992,The Tonight Show,5.6,Jay Leno
+1992,The Late Show,7.8,David Letterman
+1992,Late Night,2.6,Conan O' Brien
+1992,Later,1.4,Carson Daily
+1993,The Tonight Show,5.4,Jay Leno
+1993,The Late Show,7.2,David Letterman
+1993,Late Night,2,Conan O' Brien
+1993,Later,1.1,Greg Kinnear
+1994,The Tonight Show,5.6,Jay Leno
+1994,The Late Show,6.3,David Letterman
+1994,Late Night,2.2,Conan O' Brien
+1994,The Late Late Show,1.6,Tom Snyder
+1994,Later,1.2,Greg Kinnear
+1995,The Tonight Show,5.8,Jay Leno
+1995,The Late Show,4.7,David Letterman
+1995,Late Night,2.2,Conan O' Brien
+1995,The Late Late Show,1.6,Tom Snyder
+1995,The Daily Show,0.1,Craig Kilborn
+1995,Later,1.3,Greg Kinnear
+1996,The Tonight Show,6.2,Jay Leno
+1996,The Late Show,4.3,David Letterman
+1996,Late Night,2.5,Conan O' Brien
+1996,The Late Late Show,1.7,Tom Snyder
+1996,The Daily Show,0.2,Craig Kilborn
+1996,Later,1.4,Greg Kinnear
+1997,The Tonight Show,6.2,Jay Leno
+1997,The Late Show,3.9,David Letterman
+1997,Late Night,2.5,Conan O' Brien
+1997,The Late Late Show,1.5,Tom Snyder
+1997,The Daily Show,0.3,Craig Kilborn
+1997,Later,1.5,Greg Kinnear
+1998,The Tonight Show,5.8,Jay Leno
+1998,The Late Show,3.5,David Letterman
+1998,Late Night,2.5,Conan O' Brien
+1998,The Late Late Show,1.3,Craig Kilborn
+1998,The Daily Show,0.4,Jon Stewart
+1998,Later,1.4,Greg Kinnear
+1999,The Tonight Show,5.9,Jay Leno
+1999,The Late Show,4.1,David Letterman
+1999,Late Night,2.5,Conan O' Brien
+1999,The Late Late Show,1.5,Craig Kilborn
+1999,The Daily Show,0.5,Jon Stewart
+1999,Later,1.4,Greg Kinnear
+2000,The Tonight Show,5.9,Jay Leno
+2000,The Late Show,4.3,David Letterman
+2000,Late Night,2.5,Conan O' Brien
+2000,The Late Late Show,1.6,Craig Kilborn
+2000,The Daily Show,0.6,Jon Stewart
+2000,Later,1.4,Greg Kinnear
+2001,The Tonight Show,5.8,Jay Leno
+2001,The Late Show,4.1,David Letterman
+2001,Late Night,2.5,Conan O' Brien
+2001,The Late Late Show,1.6,Craig Kilborn
+2001,The Daily Show,0.8,Jon Stewart
+2001,Last Call,1.4,Carson Daily
+2002,The Tonight Show,5.8,Jay Leno
+2002,The Late Show,4,David Letterman
+2002,Late Night,2.6,Conan O' Brien
+2002,The Late Late Show,1.6,Craig Kilborn
+2002,The Daily Show,0.9,Jon Stewart
+2002,Last Call,1.6,Carson Daily
+2003,The Tonight Show,5.9,Jay Leno
+2003,The Late Show,4.3,David Letterman
+2003,Late Night,2.6,Conan O' Brien
+2003,The Late Late Show,1.7,Craig Kilborn
+2003,The Daily Show,1,Jon Stewart
+2003,Jimmy Kimmel Live!,1.7,Jimmy Kimmel
+2003,Last Call,1.6,Carson Daily
+2004,The Tonight Show,5.8,Jay Leno
+2004,The Late Show,4.4,David Letterman
+2004,Late Night,2.5,Conan O' Brien
+2004,The Late Late Show,1.8,Craig Ferguson
+2004,The Daily Show,1.3,Jon Stewart
+2004,Jimmy Kimmel Live!,1.6,Jimmy Kimmel
+2004,Last Call,1.5,Carson Daily
+2005,The Tonight Show,5.8,Jay Leno
+2005,The Late Show,4.2,David Letterman
+2005,Late Night,2.5,Conan O' Brien
+2005,The Late Late Show,1.9,Craig Ferguson
+2005,The Daily Show,1.5,Jon Stewart
+2005,Jimmy Kimmel Live!,1.5,Jimmy Kimmel
+2005,Last Call,1.5,Carson Daily
+2005,The Colbert Report,1.1,Stephen Colbert
+2006,The Tonight Show,5.7,Jay Leno
+2006,The Late Show,4.1,David Letterman
+2006,Late Night,2.4,Conan O' Brien
+2006,The Late Late Show,1.9,Craig Ferguson
+2006,The Daily Show,1.5,Jon Stewart
+2006,Jimmy Kimmel Live!,1.6,Jimmy Kimmel
+2006,Last Call,1.4,Carson Daily
+2006,The Colbert Report,1.1,Stephen Colbert
+2007,The Tonight Show,4.9,Jay Leno
+2007,The Late Show,3.6,David Letterman
+2007,Late Night,2,Conan O' Brien
+2007,The Late Late Show,1.7,Craig Ferguson
+2007,The Daily Show,1.4,Jon Stewart
+2007,Jimmy Kimmel Live!,1.8,Jimmy Kimmel
+2007,Last Call,1.1,Carson Daily
+2007,The Colbert Report,1.1,Stephen Colbert
+2008,The Tonight Show,3.2,Conan O' Brien
+2008,The Late Show,3.7,David Letterman
+2008,Late Night,1.8,Jimmy Fallon
+2008,The Late Late Show,1.8,Craig Ferguson
+2008,The Daily Show,1.7,Jon Stewart
+2008,Jimmy Kimmel Live!,1.7,Jimmy Kimmel
+2008,Last Call,1.2,Carson Daily
+2008,The Colbert Report,1.2,Stephen Colbert
+2009,The Tonight Show,4.1,Jay Leno
+2009,The Late Show,3.8,David Letterman
+2009,Late Night,1.6,Jimmy Fallon
+2009,The Late Late Show,1.7,Craig Ferguson
+2009,The Daily Show,1.5,Jon Stewart
+2009,Jimmy Kimmel Live!,1.7,Jimmy Kimmel
+2009,Last Call,0.9,Carson Daily
+2009,The Colbert Report,1.1,Stephen Colbert
+2010,The Tonight Show,3.8,Jay Leno
+2010,The Late Show,3.4,David Letterman
+2010,Late Night,1.8,Jimmy Fallon
+2010,The Late Late Show,1.6,Craig Ferguson
+2010,The Daily Show,1.5,Jon Stewart
+2010,Jimmy Kimmel Live!,1.7,Jimmy Kimmel
+2010,Last Call,1,Carson Daily
+2010,The Colbert Report,1.1,Stephen Colbert
+2011,The Tonight Show,3.6,Jay Leno
+2011,The Late Show,3.1,David Letterman
+2011,Late Night,1.7,Jimmy Fallon
+2011,The Late Late Show,1.4,Craig Ferguson
+2011,The Daily Show,1.7,Jon Stewart
+2011,Jimmy Kimmel Live!,1.8,Jimmy Kimmel
+2011,Last Call,1,Carson Daily
+2011,The Colbert Report,1.2,Stephen Colbert
+2012,The Tonight Show,3.5,Jay Leno
+2012,The Late Show,2.8,David Letterman
+2012,Late Night,1.7,Jimmy Fallon
+2012,The Late Late Show,1.4,Craig Ferguson
+2012,The Daily Show,1.6,Jon Stewart
+2012,Jimmy Kimmel Live!,2.5,Jimmy Kimmel
+2012,Last Call,0.9,Carson Daily
+2012,The Colbert Report,1.3,Stephen Colbert
+2013,The Tonight Show,4.1,Jimmy Fallon
+2013,The Late Show,2.9,David Letterman
+2013,Late Night,1.7,Seth Meyers
+2013,The Late Late Show,1.4,Craig Ferguson
+2013,The Daily Show,1.5,Jon Stewart
+2013,Jimmy Kimmel Live!,2.6,Jimmy Kimmel
+2013,Last Call,1,Carson Daily
+2013,The Colbert Report,1.2,Stephen Colbert
+2014,The Tonight Show,3.6,Jimmy Fallon
+2014,The Late Show,3,Stephen Colbert
+2014,Late Night,1.5,Seth Meyers
+2014,The Late Late Show,1.4,James Corden
+2014,The Daily Show,1.3,Jon Stewart
+2014,Jimmy Kimmel Live!,2.6,Jimmy Kimmel
+2014,Last Call,0.8,Carson Daily
+2014,The Colbert Report,1.2,Stephen Colbert
