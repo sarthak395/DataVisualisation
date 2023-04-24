@@ -1,0 +1,118 @@
+<head>
+    <title>Just Visualise</title>
+    <link rel="stylesheet" href="all.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <a class="logo">Just Visualise</a>
+        <ul>
+        </ul>
+    </header>
+
+    <Section>
+        <h2 id="text"><span>It's time for a new</span><br>Discovery</h2>
+
+        <img src="https://user-images.githubusercontent.com/65358991/170092504-132fa547-5ced-40e5-ab64-ded61518fac2.png"
+            id="bird1">
+        <img src="https://user-images.githubusercontent.com/65358991/170092542-9747edcc-fb51-4e21-aaf5-a61119393618.png"
+            id="bird2">
+        <img src="https://user-images.githubusercontent.com/65358991/170092559-883fe071-eb4f-4610-8c8b-a037d061c617.png"
+            id="forest">
+
+        <img src="https://user-images.githubusercontent.com/65358991/170092605-eada6510-d556-45cc-b7fa-9e4d1d258d26.png"
+            id="rocks">
+        <img src="https://user-images.githubusercontent.com/65358991/170092616-5a70c4af-2eed-496f-bde9-b5fcc7142a31.png"
+            id="water">
+    </Section>
+
+    <div class="sec">
+
+        <div class="sunburstcontainer" style="display: flex; flex-direction: row;margin-bottom: 50px;">
+            <div class="sunbursttext" style="width: 40%;margin-right: 100px;">
+                <h3 style="color: white;margin-bottom: 20px;">Number of Vulnerable Species</h3>
+                <p>This sunburst chart illustrates the population of vulnerable species categorized by their status. In this specific sunburst chart, the categories are the different statuses of vulnerable species. The vulnerable species are grouped by their status, with each status represented by a different color. 
+                    The segments within each status category represent the population of each species within that category.
+                    The chart is scaled with the proportions of contributions of various species and categories making it
+                    easy to understand
+                 </p>
+            </div>
+            <div class="extinctspecies" style="width: 1000px; padding-left: 30px;"></div>
+        </div>
+
+        <div class="picechartcontainer" style="display: flex; flex-direction: row;">
+            <div class="piechart"></div>
+            <div class="picharttext" style="width: 25%;">
+                <h3 style="color: white;margin-bottom: 20px;">Reasons for Wildlife Decrease by their Proportion</h3>
+                <p>This chart depicts the reasons for wildlife decrease and their respective contributions to this decline.
+                    As you can see from the chart, Exploitation is the largest contributor to the decline in wildlife populations, accounting for 37% of the total.
+                    Protecting and restoring habitats, enforcing hunting and poaching laws, reducing pollution, and addressing climate change are all crucial steps in protecting our planet's wildlife.
+                </p>
+            </div>
+        </div>
+
+        <div class="circularbarchart" style="margin-top: 50px;">
+            <h3 style="color: white;">Forest area vs Population of States from 1987-2013
+            </h3>
+            <p>The circular barplot is useful for visualizing how forest area growth is distributed across different states of the country and how it relates to their populations. .The forest area growth of each state is represented by a bar extending outward from the center of the circle while the population is represented by a bar extending inwards towards the center . The length of the bar is proportional to the percentage growth in forest area for that state, with longer bars representing greater growth.
+                The slider provides the user flexibility with analysing a year of his choice with a step size of 2 years
+            </p>
+            <div class="slidecontainer">
+                <input type="range" min="1987" max="2013" value="50" step=2 class="slider" id="myRange"
+                    oninput=changechart()>
+                <h1 id="valuesl" style="position: relative ;color: white;">1987</h1>
+            </div>
+            <div id="my_dataviz"></div>
+            
+        </div>
+
+        <div style="margin-top: 30px" >
+            <h3 style="color: white; margin-bottom: 20px;">This bar graph shows various reasons for deforestation and their effect on tree
+                cover loss over several years </h3>
+                <p>The chart consists of several vertical bars, each representing a year of data. The horizontal axis represents the years, while the vertical axis represents the percentage of tree cover loss. The bars are divided into sections, each representing a specific reason for deforestation, such as Agriculture, Forestry, Urbanization etc.
+                    The stacked bar chart provides an informative and visual way to represent the impact of various reasons for deforestation on tree cover loss over time. It is a useful tool for understanding the causes of deforestation and identifying potential solutions to this pressing environmental issue.
+                </p>
+            <div class="stacked_bar" style="display: flex;justify-content: center;"></div>
+        </div>
+
+
+    </div>
+
+    <footer>
+        <a href="http://www.freepik.com">Made with ❤️ by Nipun, Rhythm, Sarthak</a>
+    </footer>
+
+    <script src="wildlife.js"></script>
+    <script src="extinct.js"></script>
+    <script src="stacked-bar.js"></script>
+    <script src="forest_pop.js"></script>
+
+    <script>
+        let text = document.getElementById('text');
+        let bird1 = document.getElementById('bird1');
+        let bird2 = document.getElementById('bird2');
+        let btn = document.getElementById('btn');
+        let rocks = document.getElementById('rocks');
+        let forest = document.getElementById('forest');
+        let water = document.getElementById('water');
+        let header = document.getElementById('header');
+
+        window.addEventListener('scroll', function () {
+            let value = window.scrollY;
+
+            text.style.top = 50 + value * -.1 + '%';
+            bird2.style.top = value * -1.5 + 'px';
+            bird2.style.left = value * 2 + 'px';
+            bird1.style.top = value * -1.5 + 'px';
+            bird1.style.left = value * -5 + 'px';
+            rocks.style.top = value * -.12 + 'px';
+            forest.style.top = value * .25 + 'px';
+            header.style.top = value * .5 + 'px';
+        })
+    </script>
+
+</body>
