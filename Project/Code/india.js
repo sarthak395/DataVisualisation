@@ -36,7 +36,7 @@ var Tooltip_india = d3.select("#indiachart")
     .style("font-size", "17px")
 
 
-d3.json("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/final/india.json").then(function (json) {
+d3.json("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/india.json").then(function (json) {
     
     var maxTotal = d3.max(json.features, function (d) { return d.total });
 
@@ -122,7 +122,7 @@ d3.json("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Pro
 });
 
 function ramsar() {
-    d3.json('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/indiacities.json').then(function (data) {
+    d3.json('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/ramsar.json').then(function (data) {
         console.log("Site Data", data);
         map.selectAll("image").remove()
         map.selectAll('.towns')
