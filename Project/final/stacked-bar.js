@@ -21,6 +21,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                 AllData.push(temp)
             })
             reasons = [...Object.keys(AllData[0])].slice(1)
+            reasons = reasons.filter(reason => reason != "Wildfire" && reason != "Urbanization")
             
             var Tooltip = d3.select(".stacked_bar")
                 .append("div")
