@@ -21,6 +21,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                 AllData.push(temp)
             })
             reasons = [...Object.keys(AllData[0])].slice(1)
+            reasons = reasons.filter(reason => reason != "Wildfire" && reason != "Urbanization")
             
             var Tooltip = d3.select(".stacked_bar")
                 .append("div")
@@ -122,7 +123,8 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                     Tooltip
                         .html(`Reason: ${d[2]}<br>Year: ${d.data.year}<br>Area of Tree Loss(in ha): ${((d[1]-d[0])/1000).toFixed(2)}kHa`)
                         .style("left", (d3.mouse(ele)[0]+margin_stack.left/2) + "px")
-                        .style("top", (3100+d3.mouse(ele)[1]+margin_stack.top*2) + "px")
+                        .style("top", (3150+d3.mouse(ele)[1]+margin_stack.top*2) + "px")
+                        .style("opacity", 1).style("z-index",9999)
                 })
 
             // Add X axis label:

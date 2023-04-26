@@ -181,19 +181,112 @@ footer a {
 }
 
 .play-button {
-    background-color: #ffffff; /* white background */
-    color: #3b3b3b; /* dark gray text */
-    border-radius: 25px; /* rounded corners */
-    padding: 10px 20px; /* add some padding to the button */
-    border: none; /* remove border */
-    font-size: 18px; /* button text size */
-    font-weight: bold; /* button text weight */
+    background-color: #ffffff;
+    /* white background */
+    color: wheat;
+    /* dark gray text */
+    border-radius: 25px;
+    /* rounded corners */
+    padding: 10px 20px;
+    /* add some padding to the button */
+    border: none;
+    /* remove border */
+    font-size: 20px;
+    /* button text size */
+    font-weight: bold;
+    /* button text weight */
     width: 50%;
-  }
-  
-  .play-button:hover {
-    background-color: #3b3b3b; /* dark gray background on hover */
-    color: #ffffff; /* white text on hover */
-    cursor: pointer; /* show pointer cursor on hover */
-  }
-  
+}
+
+.play-button:hover {
+    background-color: wheat;
+    /* dark gray background on hover */
+    color: #ffffff;
+    /* white text on hover */
+    cursor: pointer;
+    /* show pointer cursor on hover */
+}
+
+.play-button-racing {
+    background-color: #ffffff;
+    /* white background */
+    color: wheat;
+    /* dark gray text */
+    border-radius: 25px;
+    /* rounded corners */
+    padding: 10px 20px;
+    /* add some padding to the button */
+    border: none;
+    /* remove border */
+    font-size: 20px;
+    /* button text size */
+    font-weight: bold;
+    /* button text weight */
+}
+
+.play-button-racing:hover {
+    background-color: wheat;
+    /* dark gray background on hover */
+    color: #ffffff;
+    /* white text on hover */
+    cursor: pointer;
+    /* show pointer cursor on hover */
+}
+
+.india .towns {
+    /* fill: rgba(154, 244, 20, 0.74);
+stroke: rgb(208, 208, 208); */
+    stroke-width: 1px;
+    /* background-image: url(map.png); */
+    background-repeat: no-repeat;
+    width: 25px;
+    /* height: 20px; */
+
+}
+
+.india .city_name {
+    fill: black;
+    font-size: 0px;
+}
+
+.india #india {
+    /*    fill: #00BCD4;
+opacity: .7; */
+    stroke: #101010;
+    stroke-width: .6;
+}
+
+.india div.tooltip2 {
+    position: absolute;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 10px;
+    color: #222;
+    background: #FFF;
+    border-radius: 2px;
+    pointer-events: none;
+    box-shadow: 0px 0px 2px 0px #a6a6a6;
+}
+
+.india .key path {
+    display: none;
+}
+
+.india .key line {
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.india .key text {
+    font-size: 6px;
+    font-family: sans-serif;
+    text-anchor: middle;
+}
+
+.india .key rect {
+    stroke-width: .4;
+}
+
+.india .tick>text {
+    opacity: 0;
+}

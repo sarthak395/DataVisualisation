@@ -15,16 +15,27 @@ const margin_race = {
    left: 0
 };
 
-let barPadding = (height_race-(margin_race.bottom+margin_race.top))/(top_n*5);
+let barPadding = (height_race - (margin_race.bottom + margin_race.top)) / (top_n * 5);
 
 let title_race = svg_race.append('text')
    .attr('class', 'title')
-   .attr('y', 24)
-   .html('Forest cover of countries in % area of country');
+   .attr('y', 55)
+   .html('Forest cover of countries in % area of country')
+   .style("fill", "white")
+   .style("font-size", "20px");
 
 let year = 1990;
+let flag_play = true
 
-d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/racebardata.csv').then(function(data) {
+function playButton() {
+   flag_play = !flag_play
+   if(!flag_play)
+   document.getElementById("#racingPlot").innerHTML="Play"
+   else if(flag_play)
+   document.getElementById("#racingPlot").innerHTML="Pause"
+}
+
+d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/racebardata.csv').then(function (data) {
    //if (error) throw error;
 
    console.log(data);
@@ -34,31 +45,31 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
          d.lastValue = +d.lastValue,
          d.value = isNaN(d.value) ? 0 : d.value,
          d.year = +d.year,
-         d.colour = d3.hsl(Math.random()*360,0.75,0.75)
+         d.colour = d3.hsl(Math.random() * 360, 0.75, 0.75)
    });
 
    console.log(data);
 
    let yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-      .sort((a,b) => b.value - a.value)
+      .sort((a, b) => b.value - a.value)
       .slice(0, top_n);
 
-   yearSlice.forEach((d,i) => d.rank = i);
+   yearSlice.forEach((d, i) => d.rank = i);
 
    console.log('yearSlice: ', yearSlice)
 
    let x_race = d3.scaleLinear()
       .domain([0, d3.max(yearSlice, d => d.value)])
-      .range([margin_race.left, width_race-margin_race.right-65]);
+      .range([margin_race.left, width_race - margin_race.right - 65]);
 
    let y_race = d3.scaleLinear()
       .domain([top_n, 0])
-      .range([height_race-margin_race.bottom, margin_race.top]);
+      .range([height_race - margin_race.bottom, margin_race.top]);
 
    let xAxis = d3.axisTop()
       .scale(x_race)
-      .ticks(width_race > 500 ? 5:2)
-      .tickSize(-(height_race-margin_race.top-margin_race.bottom))
+      .ticks(width_race > 500 ? 5 : 2)
+      .tickSize(-(height_race - margin_race.top - margin_race.bottom))
       .tickFormat(d => d3.format(',')(d));
 
    svg_race.append('g')
@@ -73,10 +84,10 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
       .enter()
       .append('rect')
       .attr('class', 'bar')
-      .attr('x', x_race(0)+1)
-      .attr('width', d => x_race(d.value)-x_race(0)-1)
-      .attr('y', d => y_race(d.rank)+5)
-      .attr('height', y_race(1)-y_race(0)-barPadding)
+      .attr('x', x_race(0) + 1)
+      .attr('width', d => x_race(d.value) - x_race(0) - 1)
+      .attr('y', d => y_race(d.rank) + 5)
+      .attr('height', y_race(1) - y_race(0) - barPadding)
       .style('fill', d => d.colour);
 
    svg_race.selectAll('text.label')
@@ -84,41 +95,44 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
       .enter()
       .append('text')
       .attr('class', 'label')
-      .attr('x', d => x_race(d.value)-8)
-      .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1)
+      .attr('x', d => x_race(d.value) - 8)
+      .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1)
       .style('text-anchor', 'end')
       .html(d => d.name)
-      .style("fill","white");
+      .style("fill", "black");
 
    svg_race.selectAll('text.valueLabel')
       .data(yearSlice, d => d.name)
       .enter()
       .append('text')
       .attr('class', 'valueLabel')
-      .attr('x', d => x_race(d.value)+5)
-      .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1)
+      .attr('x', d => x_race(d.value) + 5)
+      .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1)
       .text(d => d3.format(',.0f')(d.lastValue))
-      .style("fill","white");
+      .style("fill", "white");
 
    let yearText = svg_race.append('text')
       .attr('class', 'yearText')
-      .attr('x', width_race-margin_race.right+80)
-      .attr('y', height_race-25+50)
+      .attr('x', width_race - margin_race.right + 80)
+      .attr('y', height_race - 25 + 50)
       .style('text-anchor', 'end')
       .html(~~year)
-    //   .call(halo, 10);
+      .style("fill", "wheat")
+   //   .call(halo, 10);
 
-   let ticker = d3.interval(e => {
+   let ticker = d3.interval(updateGraph, tickDuration);
+
+   function updateGraph() {
 
       yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-         .sort((a,b) => b.value - a.value)
-         .slice(0,top_n);
+         .sort((a, b) => b.value - a.value)
+         .slice(0, top_n);
 
-      yearSlice.forEach((d,i) => d.rank = i);
+      yearSlice.forEach((d, i) => d.rank = i);
 
       //console.log('IntervalYear: ', yearSlice);
 
-      x_race.domain([0, d3.max(yearSlice, d => d.value)]); 
+      x_race.domain([0, d3.max(yearSlice, d => d.value)]);
 
       svg_race.select('.xAxis')
          .transition()
@@ -131,31 +145,31 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
       bars
          .enter()
          .append('rect')
-         .attr('class', d => `bar ${d.name.replace(/\s/g,'_')}`)
-         .attr('x', x_race(0)+1)
-         .attr( 'width', d => x_race(d.value)-x_race(0)-1)
-         .attr('y', d => y_race(top_n+1)+5)
-         .attr('height', y_race(1)-y_race(0)-barPadding)
+         .attr('class', d => `bar ${d.name.replace(/\s/g, '_')}`)
+         .attr('x', x_race(0) + 1)
+         .attr('width', d => x_race(d.value) - x_race(0) - 1)
+         .attr('y', d => y_race(top_n + 1) + 5)
+         .attr('height', y_race(1) - y_race(0) - barPadding)
          .style('fill', d => d.colour)
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('y', d => y_race(d.rank)+5);
+         .attr('y', d => y_race(d.rank) + 5);
 
       bars
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('width', d => x_race(d.value)-x_race(0)-1)
-         .attr('y', d => y_race(d.rank)+5);
+         .attr('width', d => x_race(d.value) - x_race(0) - 1)
+         .attr('y', d => y_race(d.rank) + 5);
 
       bars
          .exit()
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('width', d => x_race(d.value)-x_race(0)-1)
-         .attr('y', d => y_race(top_n+1)+5)
+         .attr('width', d => x_race(d.value) - x_race(0) - 1)
+         .attr('y', d => y_race(top_n + 1) + 5)
          .remove();
 
       let labels = svg_race.selectAll('.label')
@@ -165,30 +179,30 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
          .enter()
          .append('text')
          .attr('class', 'label')
-         .attr('x', d => x_race(d.value)-8)
-         .attr('y', d => y_race(top_n+1)+5+((y_race(1)-y_race(0))/2))
+         .attr('x', d => x_race(d.value) - 8)
+         .attr('y', d => y_race(top_n + 1) + 5 + ((y_race(1) - y_race(0)) / 2))
          .style('text-anchor', 'end')
-         .html(d => d.name)    
+         .html(d => d.name)
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1);
+         .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1);
 
 
       labels
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('x', d => x_race(d.value)-8)
-         .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1);
+         .attr('x', d => x_race(d.value) - 8)
+         .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1);
 
       labels
          .exit()
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('x', d => x_race(d.value)-8)
-         .attr('y', d => y_race(top_n+1)+5)
+         .attr('x', d => x_race(d.value) - 8)
+         .attr('y', d => y_race(top_n + 1) + 5)
          .remove();
 
 
@@ -199,24 +213,26 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
          .enter()
          .append('text')
          .attr('class', 'valueLabel')
-         .attr('x', d => x_race(d.value)+5)
-         .attr('y', d => y_race(top_n+1)+5)
+         .attr('x', d => x_race(d.value) + 5)
+         .attr('y', d => y_race(top_n + 1) + 5)
          .text(d => d3.format(',.0f')(d.lastValue))
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1);
+         .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1);
 
       valueLabels
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('x', d => x_race(d.value)+5)
-         .attr('y', d => y_race(d.rank)+5+((y_race(1)-y_race(0))/2)+1)
-         .tween("text", function(d) {
+         .attr('x', d => x_race(d.value) + 5)
+         .attr('y', d => y_race(d.rank) + 5 + ((y_race(1) - y_race(0)) / 2) + 1)
+         .tween("text", function (d) {
             let i = d3.interpolate(d.lastValue, d.value);
-            return function(t) {
-               this.textContent = d3.format(',.2f')(i(t));
+            return function (t) {
+               if(flag_play){
+                  this.textContent = d3.format(',.2f')(i(t));
+               }
             };
          });
 
@@ -226,24 +242,25 @@ d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Proj
          .transition()
          .duration(tickDuration)
          .ease(d3.easeLinear)
-         .attr('x', d => x_race(d.value)+5)
-         .attr('y', d => y_race(top_n+1)+5)
+         .attr('x', d => x_race(d.value) + 5)
+         .attr('y', d => y_race(top_n + 1) + 5)
          .remove();
 
       yearText.html(~~year);
-
-      if(year == 2020) year=1990;
-      year = d3.format('.1f')((+year) + 1);
-   },tickDuration);
-
+      if(flag_play){
+         if (year == 2020) year = 1990;
+         year = d3.format('.1f')((+year) + 1);
+      }
+      
+   }
 });
 
-const halo = function(text, strokeWidth) {
-   text.select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this); })
+const halo = function (text, strokeWidth) {
+   text.select(function () { return this.parentNode.insertBefore(this.cloneNode(true), this); })
       .style('fill', '#ffffff')
-      .style('stroke','#ffffff')
+      .style('stroke', '#ffffff')
       .style('stroke-width', strokeWidth)
       .style('stroke-linejoin', 'round')
       .style('opacity', 1);
 
-}   
+}

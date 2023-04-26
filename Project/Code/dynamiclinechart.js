@@ -63,7 +63,7 @@ function draw_linechart() {
             .attr("x", 0 - (height_tiger / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .text("Population")
+            .text("Population of Tiger")
             .style("fill", "wheat")
 
 
@@ -120,13 +120,13 @@ function draw_line(data) {
             Tooltip
                 .style("opacity", 1).style("z-index", 9999)
             d3.select(this)
-                .style("fill", "black")
+                .style("fill", "wheat")
                 .attr("r", 10)
         }).on("mousemove", function (d) {
             Tooltip
                 .html("Year: " + d.Year + "<br>" + "Population: " + d.Population)
-                .style("left", (d3.mouse(this)[0] + 900) + "px")
-                .style("top", (d3.mouse(this)[1] + 1400) + "px")
+                .style("left", (d3.mouse(this)[0] + 840) + "px")
+                .style("top", (d3.mouse(this)[1] + 1300) + "px")
         }).on("mouseleave", function (d) {
             Tooltip
                 .style("opacity", 0).style("z-index", -9999)
