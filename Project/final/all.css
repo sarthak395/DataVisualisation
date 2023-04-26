@@ -179,3 +179,21 @@ footer a {
     text-decoration: none;
     color: #fff;
 }
+
+.play-button {
+    background-color: #ffffff; /* white background */
+    color: #3b3b3b; /* dark gray text */
+    border-radius: 25px; /* rounded corners */
+    padding: 10px 20px; /* add some padding to the button */
+    border: none; /* remove border */
+    font-size: 18px; /* button text size */
+    font-weight: bold; /* button text weight */
+    width: 50%;
+  }
+  
+  .play-button:hover {
+    background-color: #3b3b3b; /* dark gray background on hover */
+    color: #ffffff; /* white text on hover */
+    cursor: pointer; /* show pointer cursor on hover */
+  }
+  

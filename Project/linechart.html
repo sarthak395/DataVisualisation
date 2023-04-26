@@ -1,0 +1,126 @@
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+    var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    var x = d3.scaleLinear()
+    var y = d3.scaleLinear()
+
+    // tooltip
+    var Tooltip = d3.select("#my_dataviz")
+        .append("div").style("position", "absolute")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")
+
+    var dataset = []
+    d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/tigerpopoveryears.csv', function (data) {
+        dataset = data;
+
+        // Add X axis 
+        x.domain([d3.min(dataset, function (d) { return d.Year; }), d3.max(dataset, function (d) { return d.Year; })]).range([0, width]);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // Add Y axis
+        y.domain([d3.min(dataset, function (d) { return d.Population; }), d3.max(dataset, function (d) { return d.Population; })]).range([height, 0]);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        draw(dataset)
+    })
+
+    function tweenDash() {
+        var l = this.getTotalLength(),
+            i = d3.interpolateString("0," + l, l + "," + l);
+        return function (t) { return i(t) };
+    }
+
+    function transition(path) {
+        path.transition()
+            .duration(2000)
+            .attrTween("stroke-dasharray", tweenDash)
+            .on("end", function () { d3.select(this).call(transition); });
+    }
+
+
+
+    function draw(data) {
+        // Add the line and add animation to line using interupt and length and delay and duration
+        
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "#69b3a2")
+            .attr("stroke-width", 1.5)
+            .attr("d", d3.line()
+                .x(function (d) { return x(d.Year) })
+                .y(function (d) { return y(d.Population) })
+            ).interrupt().transition()
+            .duration(2000)
+            .attrTween("stroke-dasharray", tweenDash)
+            .on("end", function () {
+                d3.select(this).interrupt();
+            });
+
+
+        // Add the points
+        svg
+            .append("g")
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) { return x(d.Year) })
+            .attr("cy", function (d) { return y(d.Population) })
+            .attr("r", 5)
+            .attr("fill", "#69b3a2")
+            .on("mouseover", function (d) {
+                Tooltip
+                    .style("opacity", 1)
+                d3.select(this)
+                    .style("fill", "black")
+                    .attr("r", 10)
+            }).on("mousemove", function (d) {
+                Tooltip
+                    .html("Year: " + d.Year + "<br>" + "Population: " + d.Population)
+                    .style("left", (d3.mouse(this)[0] + 70) + "px")
+                    .style("top", (d3.mouse(this)[1]) + "px")
+            }).on("mouseleave", function (d) {
+                Tooltip
+                    .style("opacity", 0)
+                d3.select(this)
+                    .style("fill", "#69b3a2")
+                    .attr("r", 5)
+            }).interrupt().transition()
+            .duration(2000)
+            .attrTween("stroke-dasharray", tweenDash)
+            .on("end", function () {
+                d3.select(this).call(transition);
+            })
+    }
+
+
+</script>

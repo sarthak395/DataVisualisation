@@ -2,7 +2,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
         width_stack = 1000 - margin_stack.left - margin_stack.right,
         height_stack = 400 - margin_stack.top - margin_stack.bottom;
         year={}
-        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/treecover_loss__ha.csv", (data)=> {
+        d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/treecover_loss__ha.csv").then( (data)=> {
             var years = data.map(record => record.year)
             years = new Set(years)
             AllData = []
@@ -84,7 +84,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                 d3.selectAll("."+subgroupName.replaceAll(' ','_'))
                 .style("opacity", 1)
                 Tooltip
-                  .style("opacity", 1)
+                  .style("opacity", 1).style("z-index",9999)
             }
 
             // When user do not hover anymore
@@ -93,7 +93,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                 d3.selectAll(".myRect")
                     .style("opacity",1.0)
                 Tooltip
-                  .style("opacity", 0)
+                  .style("opacity", 0).style("z-index",-9999)
             }
 
             // Show the bars
@@ -122,7 +122,7 @@ var margin_stack = {top: 20, right: 30, bottom: 50, left: 50},
                     Tooltip
                         .html(`Reason: ${d[2]}<br>Year: ${d.data.year}<br>Area of Tree Loss(in ha): ${((d[1]-d[0])/1000).toFixed(2)}kHa`)
                         .style("left", (d3.mouse(ele)[0]+margin_stack.left/2) + "px")
-                        .style("top", (2580+d3.mouse(ele)[1]+margin_stack.top*2) + "px")
+                        .style("top", (3100+d3.mouse(ele)[1]+margin_stack.top*2) + "px")
                 })
 
             // Add X axis label:

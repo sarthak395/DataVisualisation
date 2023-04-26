@@ -17,32 +17,32 @@ var margin_forest = { top: 50, right: 0, bottom: 0, left: 20 },
         .attr("transform", "translate(" + (width_forest / 2 + margin_forest.left-100) + "," + (height_forest / 2 + margin_forest.top) + ")");
 
 
-    var x = d3.scaleBand()
+    var x_pop = d3.scaleBand()
         .range([0, 2 * Math.PI])    // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
         .align(0)
 
-    var y = d3.scaleRadial()
+    var y_pop = d3.scaleRadial()
         .range([innerRadius_forest, outerRadius_forest])
     var ybis = d3.scaleRadial()
         .range([innerRadius_forest, 5])
 
-    var dataset = []
+    var dataset_forest = []
 
-    d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/ForestAreaPop.csv", function (data) {
+    d3.csv("https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/ForestAreaPop.csv").then( function (data_forest) {
 
         // X scale: common for 2 data series
         // This does nothing
-        x.domain(data.map(function (d) { return d['State']; })); // The domain of the X axis is the list of states.
+        x_pop.domain(data_forest.map(function (d) { return d['State']; })); // The domain of the X axis is the list of states.
 
         // Y scale outer variable
         // Domain will be define later.
-        y.domain([100, 83000]); // Domain of Y is from 0 to the max seen in the data
+        y_pop.domain([100, 83000]); // Domain of Y is from 0 to the max seen in the data
 
         // Second barplot Scales
         // Domain will be defined later.
         ybis.domain([0, 200000000]);
 
-        dataset = data;
+        dataset_forest = data_forest;
         drawchart('1987')
 
     });
@@ -68,7 +68,7 @@ var margin_forest = { top: 50, right: 0, bottom: 0, left: 20 },
 
         const u = g1
             .selectAll("path")
-            .data(dataset)
+            .data(dataset_forest)
 
         u.enter()
             .append("path").merge(u)
@@ -76,9 +76,9 @@ var margin_forest = { top: 50, right: 0, bottom: 0, left: 20 },
             .attr("class", "yo").transition().duration(500)
             .attr("d", d3.arc()     // imagine your doing a part of a donut plot
                 .innerRadius(innerRadius_forest)
-                .outerRadius(function (d) { return y(parseInt(d[`F${closest}`].replaceAll(',', ''))); })
-                .startAngle(function (d) { return x(d['State']); })
-                .endAngle(function (d) { return x(d['State']) + x.bandwidth(); })
+                .outerRadius(function (d) { console.log(d);return y_pop(parseInt(d[`F${closest}`].replaceAll(',', ''))); })
+                .startAngle(function (d) { return x_pop(d['State']); })
+                .endAngle(function (d) { return x_pop(d['State']) + x_pop.bandwidth(); })
                 .padAngle(0.01)
                 .padRadius(innerRadius_forest))
 
@@ -86,14 +86,14 @@ var margin_forest = { top: 50, right: 0, bottom: 0, left: 20 },
 g1.selectAll("text").remove()
         g1.append("g")
             .selectAll("g")
-            .data(dataset)
+            .data(dataset_forest)
             .enter()
             .append("g")
-            .attr("text-anchor", function (d) { return (x(d['State']) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
-            .attr("transform", function (d) { return "rotate(" + ((x(d['State']) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (y(parseInt(d[`F${closest}`].replaceAll(',', ''))) +10) + ",0)" })
+            .attr("text-anchor", function (d) { return (x_pop(d['State']) + x_pop.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
+            .attr("transform", function (d) { return "rotate(" + ((x_pop(d['State']) + x_pop.bandwidth() / 2) * 180 / Math.PI - 90) + ")" + "translate(" + (y_pop(parseInt(d[`F${closest}`].replaceAll(',', ''))) +10) + ",0)" })
             .append("text")
             .text(function (d) { return (d['State']) })
-            .attr("transform", function (d) { return (x(d['State']) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
+            .attr("transform", function (d) { return (x_pop(d['State']) + x_pop.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
             .style("font-size", "15px").style("fill","white")
             .attr("alignment-baseline", "middle");
 
@@ -102,7 +102,7 @@ g1.selectAll("text").remove()
 
         const u2 = g2
             .selectAll("path")
-            .data(dataset)
+            .data(dataset_forest)
 
         u2.enter()
             .append("path").merge(u2).transition().duration(500)
@@ -110,8 +110,8 @@ g1.selectAll("text").remove()
             .attr("d", d3.arc()     // imagine your doing a part of a donut plot
                 .innerRadius(function (d) { return ybis(0) })
                 .outerRadius(function (d) {  return ybis(parseInt(d[`P${closest}`].replaceAll(',', ''))); })
-                .startAngle(function (d) { return x(d['State']); })
-                .endAngle(function (d) { return x(d['State']) + x.bandwidth(); })
+                .startAngle(function (d) { return x_pop(d['State']); })
+                .endAngle(function (d) { return x_pop(d['State']) + x_pop.bandwidth(); })
                 .padAngle(0.01)
                 .padRadius(innerRadius_forest))
     }

@@ -1,10 +1,67 @@
 <head>
     <title>Just Visualise</title>
     <link rel="stylesheet" href="all.css">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <style>
+        .racingPlot text {
+            font-size: 16px;
+            font-family: Open Sans, sans-serif;
+        }
+
+        .racingPlot text .title {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .racingPlot text .subTitle {
+            font-weight: 500;
+            fill: #777777;
+        }
+
+        .racingPlot text .caption {
+            font-weight: 400;
+            font-size: 14px;
+            fill: #777777;
+        }
+
+        .racingPlot text .label {
+            font-weight: 600;
+        }
+
+        .racingPlot text .valueLabel {
+            font-weight: 300;
+        }
+
+        .racingPlot .yearText {
+            font-size: 64px;
+            font-weight: 700;
+            opacity: 0.6;
+        }
+
+        .racingPlot .tick text {
+            fill: #777777;
+        }
+
+        .racingPlot .xAxis .tick:nth-child(2) text {
+            text-anchor: start;
+        }
+
+        .racingPlot .tick line {
+            shape-rendering: CrispEdges;
+            stroke: #dddddd;
+        }
+
+        .racingPlot .tick line.origin {
+            stroke: #aaaaaa;
+        }
+
+        .racingPlot path .domain {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,11 +92,15 @@
         <div class="sunburstcontainer" style="display: flex; flex-direction: row;margin-bottom: 50px;">
             <div class="sunbursttext" style="width: 40%;margin-right: 100px;">
                 <h3 style="color: white;margin-bottom: 20px;">Number of Vulnerable Species</h3>
-                <p>This sunburst chart illustrates the population of vulnerable species categorized by their status. In this specific sunburst chart, the categories are the different statuses of vulnerable species. The vulnerable species are grouped by their status, with each status represented by a different color. 
-                    The segments within each status category represent the population of each species within that category.
-                    The chart is scaled with the proportions of contributions of various species and categories making it
+                <p>This sunburst chart illustrates the population of vulnerable species categorized by their status. In
+                    this specific sunburst chart, the categories are the different statuses of vulnerable species. The
+                    vulnerable species are grouped by their status, with each status represented by a different color.
+                    The segments within each status category represent the population of each species within that
+                    category.
+                    The chart is scaled with the proportions of contributions of various species and categories making
+                    it
                     easy to understand
-                 </p>
+                </p>
             </div>
             <div class="extinctspecies" style="width: 1000px; padding-left: 30px;"></div>
         </div>
@@ -48,37 +109,70 @@
             <div class="piechart"></div>
             <div class="picharttext" style="width: 25%;">
                 <h3 style="color: white;margin-bottom: 20px;">Reasons for Wildlife Decrease by their Proportion</h3>
-                <p>This chart depicts the reasons for wildlife decrease and their respective contributions to this decline.
-                    As you can see from the chart, Exploitation is the largest contributor to the decline in wildlife populations, accounting for 37% of the total.
-                    Protecting and restoring habitats, enforcing hunting and poaching laws, reducing pollution, and addressing climate change are all crucial steps in protecting our planet's wildlife.
+                <p>This chart depicts the reasons for wildlife decrease and their respective contributions to this
+                    decline.
+                    As you can see from the chart, Exploitation is the largest contributor to the decline in wildlife
+                    populations, accounting for 37% of the total.
+                    Protecting and restoring habitats, enforcing hunting and poaching laws, reducing pollution, and
+                    addressing climate change are all crucial steps in protecting our planet's wildlife.
                 </p>
             </div>
         </div>
 
+        <div class="tigerpopulation">
+            
+            <div style="display: flex;">
+                <div class="circlelinecontent" style="float: left;width: 50%;">
+                    <h1 style="color: white;">Dynamic Line Chart</h1>
+                    <p style="color: white;margin-bottom: 20px;"> This chart shows the trend in tiger population from 1970 to 2020 . Due to efforts by the government in 1980's tiger population showed a good growth in thosw times . However , as the "trend" declined , so the tiger population , drastically dropping till 2005 . Now , again with all the conservation laws and ban on hunting and poaching , we are yet again showing a decent level of growth in the tiger population</p>
+                    <button class="play-button" onClick="window.location.reload(true)">Play</button>
+                </div>
+                
+                
+                <div class="circleLine" style="float: right;"></div>
+            </div>
+        </div>
+
         <div class="circularbarchart" style="margin-top: 50px;">
-            <h3 style="color: white;">Forest area vs Population of States from 1987-2013
-            </h3>
-            <p>The circular barplot is useful for visualizing how forest area growth is distributed across different states of the country and how it relates to their populations. .The forest area growth of each state is represented by a bar extending outward from the center of the circle while the population is represented by a bar extending inwards towards the center . The length of the bar is proportional to the percentage growth in forest area for that state, with longer bars representing greater growth.
-                The slider provides the user flexibility with analysing a year of his choice with a step size of 2 years
-            </p>
+            <div>
+                <h3 style="color: white;">Forest area vs Population of States from 1987-2013
+                </h3>
+                <p>The circular barplot is useful for visualizing how forest area growth is distributed across different
+                    states of the country and how it relates to their populations. .The forest area growth of each state is
+                    represented by a bar extending outward from the center of the circle while the population is represented
+                    by a bar extending inwards towards the center . The length of the bar is proportional to the percentage
+                    growth in forest area for that state, with longer bars representing greater growth.
+                    The slider provides the user flexibility with analysing a year of his choice with a step size of 2 years
+                </p>
+            </div>
             <div class="slidecontainer">
                 <input type="range" min="1987" max="2013" value="50" step=2 class="slider" id="myRange"
                     oninput=changechart()>
                 <h1 id="valuesl" style="position: relative ;color: white;">1987</h1>
             </div>
             <div id="my_dataviz"></div>
-            
+
         </div>
 
-        <div style="margin-top: 30px" >
-            <h3 style="color: white; margin-bottom: 20px;">This bar graph shows various reasons for deforestation and their effect on tree
+        <div style="margin-top: 30px">
+            <h3 style="color: white; margin-bottom: 20px;">This bar graph shows various reasons for deforestation and
+                their effect on tree
                 cover loss over several years </h3>
-                <p>The chart consists of several vertical bars, each representing a year of data. The horizontal axis represents the years, while the vertical axis represents the percentage of tree cover loss. The bars are divided into sections, each representing a specific reason for deforestation, such as Agriculture, Forestry, Urbanization etc.
-                    The stacked bar chart provides an informative and visual way to represent the impact of various reasons for deforestation on tree cover loss over time. It is a useful tool for understanding the causes of deforestation and identifying potential solutions to this pressing environmental issue.
-                </p>
+            <p>The chart consists of several vertical bars, each representing a year of data. The horizontal axis
+                represents the years, while the vertical axis represents the percentage of tree cover loss. The bars are
+                divided into sections, each representing a specific reason for deforestation, such as Agriculture,
+                Forestry, Urbanization etc.
+                The stacked bar chart provides an informative and visual way to represent the impact of various reasons
+                for deforestation on tree cover loss over time. It is a useful tool for understanding the causes of
+                deforestation and identifying potential solutions to this pressing environmental issue.
+            </p>
             <div class="stacked_bar" style="display: flex;justify-content: center;"></div>
         </div>
 
+        <div class="racingbarchart">
+            <button class="play-button" onclick="window.location.reload(true)">Restart</button>
+            <div class="racingPlot"></div>
+        </div>
 
     </div>
 
@@ -90,6 +184,8 @@
     <script src="extinct.js"></script>
     <script src="stacked-bar.js"></script>
     <script src="forest_pop.js"></script>
+    <script src="dynamiclinechart.js"></script>
+    <script src="racing.js"></script>
 
     <script>
         let text = document.getElementById('text');
