@@ -30,7 +30,7 @@ var Tooltip = d3.select(".circleLine")
 
 
 function draw_linechart() {
-    console.log("Replayed")
+    // console.log("Replayed")
     var dataset = []
     d3.csv('https://raw.githubusercontent.com/sarthak395/DataVisualisation/main/Project/Datasets/tigerpopoveryears.csv').then(function (data) {
         dataset = data;
@@ -87,13 +87,21 @@ function transition(path) {
 
 
 function draw_line(data) {
-    // Add the line and add animation to line using interupt and length and delay and duration
+    // Add the line and add animation to line using interupt and length and delay and duration  
+
+    console.log("Replayed")
+    
+    g_tiger.selectAll("line").remove()
+    g_tiger.selectAll("circle").remove()
+    g_tiger.selectAll("path").remove()
+
 
     g_tiger.append("path")
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", "#69b3a2")
         .attr("stroke-width", 1.5)
+        .attr("class", "line")
         .attr("d", d3.line()
             .x(function (d) { return x_tiger(d.Year) })
             .y(function (d) { return y_tiger(d.Population) })
